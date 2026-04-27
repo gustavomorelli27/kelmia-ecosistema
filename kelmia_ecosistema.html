@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Kelmia — Ecosistema tecnológico</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,'Helvetica Neue',Arial,sans-serif;background:#0d0c1d;color:#c8c8e0;line-height:1.6;padding:48px 5% 64px}
+
+/* ── HEADER ── */
+.header{text-align:center;margin-bottom:52px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(77,114,255,.12);border:1px solid rgba(77,114,255,.25);border-radius:20px;padding:5px 16px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8fa8ff;margin-bottom:18px}
+.header h1{font-size:36px;font-weight:800;letter-spacing:-.6px;color:#fff;line-height:1.15;margin-bottom:14px}
+.header h1 em{font-style:normal;color:#4d72ff}
+.header p{font-size:15px;color:#6060a0;max-width:560px;margin:0 auto;line-height:1.75}
+
+/* ── THREE COLUMNS ── */
+.arch{display:grid;grid-template-columns:1fr 48px 1fr 48px 1fr;gap:0;align-items:stretch;margin-bottom:48px}
+
+/* arrows */
+.arrow-col{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.arrow-line{width:2px;flex:1;background:rgba(77,114,255,.15)}
+.arrow-head{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:9px solid rgba(77,114,255,.35)}
+.arrow-label{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#4d72ff;writing-mode:vertical-rl;text-orientation:mixed;opacity:.6}
+
+/* layer panels */
+.layer{background:#07061a;border-radius:20px;border:1px solid rgba(255,255,255,.06);padding:28px 22px;display:flex;flex-direction:column;gap:0}
+.layer.flow-layer{border-color:rgba(29,158,117,.2)}
+.layer.worker-layer{border-color:rgba(77,114,255,.18)}
+
+.layer-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.05)}
+.layer-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.li-gray{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
+.li-teal{background:rgba(29,158,117,.15);border:1px solid rgba(29,158,117,.2)}
+.li-blue{background:rgba(77,114,255,.15);border:1px solid rgba(77,114,255,.2)}
+.layer-title-wrap{}
+.layer-tag{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.lt-gray{color:#5060a0}.lt-teal{color:#1D9E75}.lt-blue{color:#4d72ff}
+.layer-title{font-size:17px;font-weight:800;color:#fff;letter-spacing:-.3px}
+
+/* system items */
+.sys-list{display:flex;flex-direction:column;gap:10px}
+.sys-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:10px}
+.sys-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.sd-gray{background:#5060a0}.sd-teal{background:#1D9E75}.sd-blue{background:#4d72ff}
+.sys-info{}
+.sys-name{font-size:13px;font-weight:700;color:#d0d0f0;line-height:1.2}
+.sys-sub{font-size:11px;color:#4a4a70;margin-top:2px}
+
+/* flow modules */
+.flow-modules{display:flex;flex-direction:column;gap:10px}
+.flow-mod{padding:14px 16px;background:rgba(29,158,117,.05);border:1px solid rgba(29,158,117,.15);border-radius:12px}
+.fm-title{font-size:13px;font-weight:700;color:#9fe1cb;margin-bottom:4px}
+.fm-desc{font-size:11px;color:#3a7060;line-height:1.5}
+.fm-pills{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.fp{font-size:10px;font-weight:600;background:rgba(29,158,117,.12);border:1px solid rgba(29,158,117,.2);color:#5DCAA5;border-radius:20px;padding:2px 8px}
+
+/* worker grid */
+.worker-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.worker-card{padding:12px 14px;background:rgba(77,114,255,.05);border:1px solid rgba(77,114,255,.15);border-radius:12px}
+.wc-icon-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.wc-icon{width:28px;height:28px;border-radius:8px;background:rgba(77,114,255,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.wc-name{font-size:12px;font-weight:700;color:#c8d8ff}
+.wc-desc{font-size:11px;color:#3a3a70;line-height:1.45}
+.wc-pill{display:inline-block;margin-top:7px;font-size:10px;font-weight:600;background:rgba(77,114,255,.12);border:1px solid rgba(77,114,255,.2);color:#8fa8ff;border-radius:20px;padding:2px 8px}
+
+/* ── BOTTOM TAGLINE ── */
+.tagline-row{display:flex;align-items:center;justify-content:center;gap:32px;padding:28px 32px;background:#07061a;border:1px solid rgba(255,255,255,.05);border-radius:16px;flex-wrap:wrap}
+.tl-item{display:flex;align-items:center;gap:10px;font-size:13px;color:#8888a8}
+.tl-dot{width:8px;height:8px;border-radius:50%}
+.tl-sep{width:1px;height:28px;background:rgba(255,255,255,.06)}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="eyebrow">Ecosistema Kelmia</div>
+  <h1>Las empresas del futuro no tienen<br/>operadores de datos.<br/><em>Tienen Digital Workers.</em></h1>
+  <p>Kelmia no sustituye tu infraestructura. Se despliega sobre ella — primero automatizando documentos con Flow, luego añadiendo Digital Workers autónomos para cada tarea operativa.</p>
+</div>
+
+<div class="arch">
+
+  <!-- ── COL 1: SISTEMAS ── -->
+  <div class="layer">
+    <div class="layer-header">
+      <div class="layer-icon li-gray">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="3" width="20" height="14" rx="2.5" stroke="#5060a0" stroke-width="1.5"/>
+          <path d="M8 21h8M12 17v4" stroke="#5060a0" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="layer-title-wrap">
+        <div class="layer-tag lt-gray">Capa base</div>
+        <div class="layer-title">Sistemas del cliente</div>
+        <div style="font-size:12px;color:#4a4a70;margin-top:5px;line-height:1.5">Tu infraestructura actual. ERP, CRM y canales de comunicación.<br/>Kelmia no los modifica — se conecta por encima sin fricciones.</div>
+      </div>
+    </div>
+    <div class="sys-list">
+      <div class="sys-item">
+        <div class="sys-dot sd-gray"></div>
+        <div class="sys-info"><div class="sys-name">ERP</div><div class="sys-sub">SAP · Business Central · SAGE · Oracle</div></div>
+      </div>
+      <div class="sys-item">
+        <div class="sys-dot sd-gray"></div>
+        <div class="sys-info"><div class="sys-name">CRM</div><div class="sys-sub">Gestión de clientes y relaciones comerciales</div></div>
+      </div>
+      <div class="sys-item">
+        <div class="sys-dot sd-gray"></div>
+        <div class="sys-info"><div class="sys-name">Email / PDF / Docs</div><div class="sys-sub">Canal principal de recepción de pedidos</div></div>
+      </div>
+      <div class="sys-item">
+        <div class="sys-dot sd-gray"></div>
+        <div class="sys-info"><div class="sys-name">EDI / Portal B2B</div><div class="sys-sub">Intercambio electrónico y portales de cliente</div></div>
+      </div>
+      <div class="sys-item">
+        <div class="sys-dot sd-gray"></div>
+        <div class="sys-info"><div class="sys-name">Logística / WMS</div><div class="sys-sub">Gestión de almacén, stock y entregas</div></div>
+      </div>
+      <div class="sys-item">
+        <div class="sys-dot sd-gray"></div>
+        <div class="sys-info"><div class="sys-name">Contabilidad</div><div class="sys-sub">Software financiero y de facturación</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARROW 1 -->
+  <div class="arrow-col">
+    <div class="arrow-label">Flow lee y escribe</div>
+    <div class="arrow-head"></div>
+  </div>
+
+  <!-- ── COL 2: KELMIA FLOW ── -->
+  <div class="layer flow-layer">
+    <div class="layer-header">
+      <div class="layer-icon li-teal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <rect x="4" y="3" width="10" height="14" rx="2" stroke="#1D9E75" stroke-width="1.5"/>
+          <path d="M7 7h7M7 10h5" stroke="#1D9E75" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M17 10l4 4-4 4" stroke="#5DCAA5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="layer-title-wrap">
+        <div class="layer-tag lt-teal">Capa media</div>
+        <div class="layer-title">Kelmia Flow</div>
+        <div style="font-size:12px;color:#2a5a4a;margin-top:5px;line-height:1.5">Automatización documental con IA. Lee pedidos y facturas en cualquier formato y los introduce en el ERP sin intervención humana. Operativo en 48–72 horas.</div>
+      </div>
+    </div>
+    <div class="flow-modules">
+      <div class="flow-mod">
+        <div class="fm-title">Módulo Pedidos — PDF-to-Order</div>
+        <div class="fm-desc">Lee pedidos en cualquier formato (PDF, email, EDI), extrae los datos, los cruza con el ERP y crea la orden de venta sin intervención manual.</div>
+        <div class="fm-pills"><span class="fp">+75% automatización mes 1</span><span class="fp">+90% mes 3</span><span class="fp">&lt;1% error</span></div>
+      </div>
+      <div class="flow-mod">
+        <div class="fm-title">Módulo Facturas — Purchase-to-Pay</div>
+        <div class="fm-desc">Procesa facturas de proveedores, valida CIF, albaranes e importes. Contabilización automática tras aprobación con un solo clic.</div>
+        <div class="fm-pills"><span class="fp">Conciliación automática</span><span class="fp">Aprobación 1 clic</span></div>
+      </div>
+      <div class="flow-mod">
+        <div class="fm-title">Agente IA — Resolución de identidades</div>
+        <div class="fm-desc">Tres capas progresivas: alias map (memoria instantánea), scoring ponderado contra el ERP, y LLM contextual para los casos residuales. Aprende con cada uso.</div>
+        <div class="fm-pills"><span class="fp">Alias map</span><span class="fp">Scoring</span><span class="fp">LLM contextual</span><span class="fp">Aprende solo</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARROW 2 -->
+  <div class="arrow-col">
+    <div class="arrow-label">Workers ejecutan</div>
+    <div class="arrow-head"></div>
+  </div>
+
+  <!-- ── COL 3: DIGITAL WORKERS ── -->
+  <div class="layer worker-layer">
+    <div class="layer-header">
+      <div class="layer-icon li-blue">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="8" r="3.5" stroke="#4d72ff" stroke-width="1.5"/>
+          <path d="M5 20c0-3.5 3.1-6 7-6s7 2.5 7 6" stroke="#4d72ff" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="19.5" cy="4.5" r="1.5" fill="#4d72ff" opacity=".5"/>
+          <circle cx="19.5" cy="10.5" r="1.5" fill="#4d72ff" opacity=".5"/>
+        </svg>
+      </div>
+      <div class="layer-title-wrap">
+        <div class="layer-tag lt-blue">Capa superior</div>
+        <div class="layer-title">Digital Workers</div>
+        <div style="font-size:12px;color:#2a2a60;margin-top:5px;line-height:1.5">Agentes autónomos especializados por tarea. Diagnostican, deciden y ejecutan dentro de tus sistemas con trazabilidad completa y supervisión humana disponible.</div>
+      </div>
+    </div>
+    <div class="worker-grid">
+
+      <div class="worker-card">
+        <div class="wc-icon-row">
+          <div class="wc-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="14" height="18" rx="2" stroke="#4d72ff" stroke-width="1.5"/><path d="M8 8h6M8 12h6M8 16h4" stroke="#4d72ff" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="wc-name">Worker Pedidos</div>
+        </div>
+        <div class="wc-desc">Recibe, interpreta y tramita pedidos B2B en cualquier formato. Verifica stock, precios y condiciones. Opera 24/7.</div>
+        <div class="wc-pill">−80% tiempo operativo</div>
+      </div>
+
+      <div class="worker-card">
+        <div class="wc-icon-row">
+          <div class="wc-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#4d72ff" stroke-width="1.5"/><path d="M12 7v5l3 3" stroke="#4d72ff" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="wc-name">Worker Facturación</div>
+        </div>
+        <div class="wc-desc">Cruza facturas con pedidos y albaranes, detecta discrepancias y lanza flujos de aprobación. Conciliación en tiempo real.</div>
+        <div class="wc-pill">Auditoría completa</div>
+      </div>
+
+      <div class="worker-card">
+        <div class="wc-icon-row">
+          <div class="wc-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 9v4M12 17h.01" stroke="#4d72ff" stroke-width="1.5" stroke-linecap="round"/><path d="M10.3 4.3L3 17a2 2 0 001.7 3h16.6A2 2 0 0023 17L15.7 4.3a2 2 0 00-3.4 0z" stroke="#4d72ff" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="wc-name">Worker Incidencias</div>
+        </div>
+        <div class="wc-desc">Detecta, clasifica y gestiona incidencias operativas. Consulta historial y propone resolución automática.</div>
+        <div class="wc-pill">Resolución en &lt;2 min</div>
+      </div>
+
+      <div class="worker-card">
+        <div class="wc-icon-row">
+          <div class="wc-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" stroke="#4d72ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="16 7 22 7 22 13" stroke="#4d72ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="wc-name">Worker Ventas</div>
+        </div>
+        <div class="wc-desc">Analiza cartera de clientes, detecta oportunidades de venta cruzada e identifica riesgo de fuga. Alerta al comercial.</div>
+        <div class="wc-pill">Inteligencia comercial</div>
+      </div>
+
+      <div class="worker-card">
+        <div class="wc-icon-row">
+          <div class="wc-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="#4d72ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="wc-name">Worker Atención Cliente</div>
+        </div>
+        <div class="wc-desc">Responde consultas sobre pedidos, entregas y facturas en tiempo real. Escala al agente humano cuando es necesario.</div>
+        <div class="wc-pill">Disponible 24/7</div>
+      </div>
+
+      <div class="worker-card">
+        <div class="wc-icon-row">
+          <div class="wc-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="#4d72ff" stroke-width="1.5"/><path d="M3 10h18M8 4v6M16 4v6" stroke="#4d72ff" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="wc-name">Worker Administración</div>
+        </div>
+        <div class="wc-desc">Gestiona tareas recurrentes: conciliaciones bancarias, datos maestros e informes automáticos. Opera en horario nocturno.</div>
+        <div class="wc-pill">−85% tiempo admin</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ── TAGLINE ── -->
+<div class="tagline-row">
+  <div class="tl-item">
+    <div class="tl-dot" style="background:#5060a0"></div>
+    Kelmia no modifica tus sistemas actuales
+  </div>
+  <div class="tl-sep"></div>
+  <div class="tl-item">
+    <div class="tl-dot" style="background:#1D9E75"></div>
+    Flow automatiza los flujos documentales
+  </div>
+  <div class="tl-sep"></div>
+  <div class="tl-item">
+    <div class="tl-dot" style="background:#4d72ff"></div>
+    Los Workers ejecutan tareas autónomamente
+  </div>
+  <div class="tl-sep"></div>
+  <div class="tl-item">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-7" stroke="#4d72ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Operativos en semanas, no meses
+  </div>
+</div>
+
+</body>
+</html>
